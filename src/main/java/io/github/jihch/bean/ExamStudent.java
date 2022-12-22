@@ -43,6 +43,10 @@ public class ExamStudent {
                 '}';
     }
 
+    public String info() {
+        return String.format("流水号：%s\n四级/六级:%d\n身份证号：%s\n准考证号：%s\n学生姓名：%s\n区域：%s\n成绩：%d", flowId, type, idCard, examCard, studentName, location, grade);
+    }
+
     public Integer getFlowId() {
         return flowId;
     }
@@ -98,4 +102,5 @@ public class ExamStudent {
     public void setGrade(Integer grade) {
         this.grade = grade;
     }
+
 }
