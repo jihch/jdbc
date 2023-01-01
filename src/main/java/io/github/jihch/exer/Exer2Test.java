@@ -225,4 +225,18 @@ public class Exer2Test {
 
     }
 
+    @Test
+    public void testDeleteByExamCard1() {
+        System.out.println("请输入学生的考号：");
+        Scanner scanner = new Scanner(System.in);
+        String examCard = scanner.next();
+        String sql1 = "delete from examstudent where ExamCard = ?";
+        int deleteCount = update(sql1, examCard);
+        if (deleteCount > 0) {
+            System.out.println("删除成功");
+        } else {
+            System.out.println("查无此人，请重新输入");
+        }
+    }
+
 }
