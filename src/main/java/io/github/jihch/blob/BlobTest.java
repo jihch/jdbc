@@ -27,6 +27,20 @@ public class BlobTest {
         JDBCUtils.closeResource(connection, preparedStatement);
     }
 
+    @Test
+    public void testInsertBlobLargerThan1M() throws Exception {
+        Connection connection = JDBCUtils.getConnection();
+        String sql = "insert into customers(name, email, birth, photo) values (?,?,?,?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setObject(1, "测试图片大于4M");
+        preparedStatement.setObject(2, "xxxx@126.com");
+        preparedStatement.setObject(3, "1992-09-08");
+        InputStream inputStream = ClassLoader.getSystemResourceAsStream("larger_than_4M.jpg");
+        preparedStatement.setBlob(4, inputStream);
+        preparedStatement.execute();
+        JDBCUtils.closeResource(connection, preparedStatement);
+    }
+
     //查询数据表 customers 中 blob 类型的字段
     @Test
     public void testQuery() {
